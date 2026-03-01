@@ -441,7 +441,7 @@ Allocate across these BUY-signal stocks. Total budget: $100,000.
 **Evaluation**: Full portfolio metrics (CAGR, Sharpe, max drawdown) over rolling quarterly windows across multiple years. Compare against:
 - Random scan + random signal + equal weight
 - Traditional screen (Piotroski >= 7) + momentum entry + equal weight
-- QARP strategy from ts-backtests (our existing benchmark)
+- QARP strategy (existing benchmark)
 
 **Data requirements**: Everything from M2 + M3 + M4 combined.
 

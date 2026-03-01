@@ -18,7 +18,7 @@ CLI_MODEL_ALIAS = {
 }
 
 # Run claude CLI from this directory so it picks up the M7 CLAUDE.md
-# instead of ATO_SUITE's CLAUDE.md (which tells models they're coding assistants)
+# instead of any parent project's CLAUDE.md
 CLI_RUNNER_DIR = os.path.expanduser("~/.m7-runner")
 
 

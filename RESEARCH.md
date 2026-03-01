@@ -233,8 +233,8 @@ Cao et al. found systematic LLM bias for non-US markets driven by training data 
 
 ### What Framework To Use
 **Don't adopt any existing framework.** Build lean, reuse components:
-- From `ts-backtests`: `metrics.py`, `ts_client.py`, `costs.py`, `cli_utils.py`
-- From `ATO_Simulator`: 4-step methodology as conceptual pattern (scan, signal, execute, evaluate)
+- Shared utilities: `metrics.py`, `ts_client.py`, `costs.py`, `cli_utils.py`
+- Conceptual pattern: 4-step methodology (scan, signal, execute, evaluate)
 - New: model runner (claude CLI + API wrappers), anonymization pipeline, prompt templates
 
 ### Why Not Existing Frameworks
