@@ -7,7 +7,7 @@ llm-backtest-bench benchmarks LLMs on financial signal generation. Its one exper
 ## Layout
 
 - `m7/`: the M7 package. The README's "Project Structure" says what each module does. `python3 -m m7.run` is the CLI. `python3 -m m7.analyze` compares finished runs, or writes `report.md` into one.
-- `lib/`: backtest helpers. `m7` imports only `lib/ts_client.py` (the TradingStudio API client) and `lib/data_utils.py`. The `lib/` docstrings describe strategy folders (`qarp/`, `piotroski/`) and a `fetch_data()` that aren't in this repo.
+- `lib/`: backtest helpers. `m7` imports only `lib/ts_client.py` (the TradingStudio API client) and `lib/data_utils.py`.
 - `RESULTS.md` is the full M7 write-up, `RESEARCH.md` the literature review, `METHODOLOGIES.md` the plan for experiments M1 to M10.
 - `data/` (parquet cache) and `outputs/runs/<run>/` (one folder per run) are gitignored. Both are created under the current directory, so run everything from the repo root.
 
@@ -64,5 +64,6 @@ Merging to `main` builds and deploys nothing: no CI, no package, no release. No 
 - Without `--pairs-file`, `--resume` runs the data step again for the `--exchange` and year flags given (default US, 2015 to 2025) and needs `TS_API_KEY`. `--resume <run_dir> --pairs-file <run_dir>/pairs.json` skips it.
 - The cache in `data/` expires after 24 hours (`CACHE_MAX_AGE_HOURS` in `m7/data.py`), and a later run fetches everything again. The README's "Data" section gives the sizes.
 - `model_id` in `m7/config.py` is only a label in the results. The CLI gets the alias `haiku`, `sonnet` or `opus`, so the model called is whatever the installed CLI maps that alias to.
-- `BLOG_POST.md` and `REDDIT_POST.md` are post drafts that quote the M7 numbers. Leave them as they are when results change.
+- `BLOG_POST.md` and `REDDIT_POST.md` are post drafts that quote the M7 numbers from `RESULTS.md`. Update them only when asked.
+- The `lib/` docstrings describe strategy folders (`qarp/`, `piotroski/`) and a `fetch_data()` that aren't in this repo.
 - `.venv/` isn't in `.gitignore`. Keep it out of commits.
