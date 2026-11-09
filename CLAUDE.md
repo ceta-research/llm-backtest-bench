@@ -1,5 +1,10 @@
 # CLAUDE.md
 
+## Before you change anything
+
+- The data step needs `TS_API_KEY`: export it or pass `--api-key`. No code reads `.env`. When present it holds credentials: never quote it.
+- Every model run costs Claude subscription time. The four full runs took about 14 hours for 13,200 calls (`RESULTS.md`). Start one only when asked, and try changes with `--pairs 5 --start-year 2024 --end-year 2025` first.
+
 <!-- shared:public-rules v2. Every public repo of ours carries this block word for word; change it in all of them at once, never in one repo alone. -->
 ## Rules for every change
 
@@ -32,7 +37,6 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-- The data step needs `TS_API_KEY`: export it or pass `--api-key`. No code reads `.env`. When present it holds credentials: never quote it.
 - Model runs need the `claude` CLI installed and logged in, and the `~/.m7-runner/CLAUDE.md` persona from the README's "Runner Directory" section.
 - `--evaluate <run_dir>` and `python3 -m m7.analyze <run_dir>...` need neither the key nor the CLI.
 
@@ -59,7 +63,6 @@ Merging to `main` builds and deploys nothing: no CI, no package, no release. No 
 
 - `m7/llm.py` runs `claude` with `cwd` set to `~/.m7-runner` (`CLI_RUNNER_DIR`), so benchmark calls load that folder's persona and never this file. Keep `CLI_RUNNER_DIR` and the `cwd=` argument as they are.
 - If `~/.m7-runner` is missing, every LLM call fails and is logged as an error.
-- Every model run costs Claude subscription time. The four full runs took about 14 hours for 13,200 calls (`RESULTS.md`). Start one only when asked, and try changes with `--pairs 5 --start-year 2024 --end-year 2025` first.
 - `--resume` reads nothing back from the run's `config.json`. Pass the original `--model`, `--prompt`, `--thinking-tokens` and `--effort` again, or the remaining pairs run on the defaults. The README's resume example omits them.
 - `--resume` treats every pair in `llm_calls.jsonl` as done, failed calls included. Delete the error lines to retry those pairs.
 - Without `--pairs-file`, `--resume` runs the data step again for the `--exchange` and year flags given (default US, 2015 to 2025) and needs `TS_API_KEY`. `--resume <run_dir> --pairs-file <run_dir>/pairs.json` skips it.
